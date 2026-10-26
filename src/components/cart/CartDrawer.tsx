@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { X, Trash2, ShoppingBag, ArrowRight, ShieldCheck } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { PriceTag } from "@/components/ui/PriceTag";
@@ -11,6 +12,7 @@ import { Button } from "@/components/ui/Button";
 const FREE_SHIPPING_THRESHOLD = 2500;
 
 export const CartDrawer: React.FC = () => {
+  const router = useRouter();
   const {
     cart,
     cartCount,
@@ -211,7 +213,8 @@ export const CartDrawer: React.FC = () => {
               variant="primary"
               size="lg"
               onClick={() => {
-                alert("Prototype Checkout: Payment integrations will be connected in a future milestone. Items remain saved in your bag.");
+                closeCart();
+                router.push("/checkout");
               }}
               className="w-full justify-center flex items-center gap-2"
             >
